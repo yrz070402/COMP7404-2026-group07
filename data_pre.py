@@ -78,5 +78,5 @@ def build_sparse_matrix_movielens():
 if __name__ == "__main__":
     rating_matrix_movielens = build_sparse_matrix_movielens()
     sparse.save_npz("movielens_matrix.npz", rating_matrix_movielens)
-    # rating_matrix_netflix = build_sparse_matrix_netflix()
-    # sparse.save_npz("netflix_matrix.npz", rating_matrix)
+    rating_matrix_netflix = build_sparse_matrix_netflix()
+    sparse.save_npz("netflix_matrix.npz", rating_matrix_netflix)
