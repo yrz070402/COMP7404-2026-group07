@@ -251,6 +251,8 @@ def parse_args():
 	                    help='Input database name')
     parser.add_argument('--input', nargs='?', default='netflix_matrix.npz',
 	                    help='Input csr matrix path')
+    parser.add_argument('--f_param', type=int, default=300,
+	                    help='latent dimension when doing PureSVD procedure')
     parser.add_argument('--U_param', type=float, default=0.83,
 	                    help='U parameter')
     parser.add_argument('--padding', type=int, default=3,
@@ -265,11 +267,12 @@ def parse_args():
 if __name__ == "__main__":
     # Parameter given
     args = parse_args()
-
+    # the latent dimension used for given database
     fs = {
         "Movielens":150,
         "Netflix":300
     }
+    f = args.f_param
     U_param = args.U_param
     m = args.padding
     num_user = args.num_users
@@ -284,7 +287,7 @@ if __name__ == "__main__":
 
     # PureSVD procedure
     print('PureSVD')
-    # U, V = pure_svd(matrix_path, f = fs['Netflix'])
+    # U, V = pure_svd(matrix_path, f)
 
     data = np.load("svd_cache_f300.npz")
     U, V = data['U_vecs'], data['V_vecs']
