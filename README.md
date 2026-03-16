@@ -14,7 +14,7 @@ You will need the following packages to run the code:
 - **Movielens 10M dataset** 
 - **Netflix Prize dataset**
 ## Usage
-### Data_preparation
+### Data preparation
 Downloading the dataset above, add the file **ratings.dat** from **Movielens** to **./movielens_data** and the combined_data list from **Netflix** to **./netflix_data**. Then run the command below,
 ```
 python data_pre.py
