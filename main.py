@@ -311,6 +311,7 @@ if __name__ == "__main__":
     )
 
     fig = pic_plot.plot_pr_curve(pr_alsh, pr_baseline, K_list, T_list, data_name)
+    plt.savefig(f"fig_ALSH_{data_name}.png", dpi=300)
     plt.show()
 
     # PartII
@@ -329,4 +330,5 @@ if __name__ == "__main__":
 
     fig = pic_plot.plot_avg_pr4r(avg_r_result, r_list, T_list, data_name)
     plt.tight_layout()
+    plt.savefig(f"fig_r_compare_{data_name}.png", dpi=300)
     plt.show()

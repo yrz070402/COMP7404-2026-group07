@@ -19,7 +19,7 @@ def plot_pr_curve(pr_alsh, pr_baseline, K_list, T_list, data_name):
     }
     y_max = y_max_all[data_name]
 
-    fig, axes = plt.subplots(4, 3, figsize=(9.2, 12))
+    fig, axes = plt.subplots(4, 3, figsize=(12, 12))
     plt.subplots_adjust(wspace=0.30, hspace=0.25)
 
     for i, K in enumerate(K_list):
@@ -57,10 +57,10 @@ def plot_pr_curve(pr_alsh, pr_baseline, K_list, T_list, data_name):
             leg = ax.legend(handles=handles, loc="upper right", frameon=True, framealpha=1.0, fancybox=False)
             leg.get_frame().set_edgecolor("black")
 
-            ax.text(0.26, 0.83, data_name, color="red", transform=ax.transAxes,
-                    fontsize=10, fontweight="bold")
-            ax.text(0.52, 0.40, f"Top {T}, K = {K}", color="black", transform=ax.transAxes,
-                    fontsize=10, fontweight="bold")
+            ax.text(0.20, 0.80, data_name, color="red", transform=ax.transAxes,
+                    fontsize=8, fontweight="bold")
+            ax.text(0.50, 0.40, f"Top {T}, K = {K}", color="black", transform=ax.transAxes,
+                    fontsize=8, fontweight="bold")
 
     return fig
 
