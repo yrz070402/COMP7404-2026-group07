@@ -103,8 +103,7 @@ def plot_single(ax, avg_r_result, r_list, T, ymax, data_name):
     ax.legend(loc="upper right", frameon=True, framealpha=0.96, fontsize=10, edgecolor="black")
 
     ax.text(0.02, 0.98, data_name, color="red", transform=ax.transAxes,
-            fontsize=11, fontweight="bold", va="top", 
-            bbox=dict(boxstyle="round,pad=0.3", facecolor="white", alpha=0.8))
+            fontsize=11, fontweight="bold", va="top")
 
 
 def plot_avg_pr4r(avg_r_result, r_list, T_list, data_name):
@@ -113,7 +112,7 @@ def plot_avg_pr4r(avg_r_result, r_list, T_list, data_name):
             1: 25, 5: 60, 10: 80,
         },
         "Netflix":{
-            1: 20, 5: 40, 10: 60,
+            1: 20, 5: 45, 10: 60,
         },
     }
     y_max = y_max_all[data_name]
