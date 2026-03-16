@@ -3,7 +3,7 @@ import numpy as np
 from tqdm import tqdm
 from scipy import sparse
 
-def build_sparse_matrix():
+def build_sparse_matrix_netflix():
     # data path
     floder_path = r"./netflix_data"
     # data file name
@@ -49,7 +49,34 @@ def build_sparse_matrix():
 
     return rating_matrix
 
+def build_sparse_matrix_movielens():
+    floder_path = r"./movielens_data"
+    file_name = r"ratings.dat"
+    sep = "::"
+    path = os.path.join(floder_path, file_name)
+    users, items, ratings = [], [], []
+    with open(path, 'r') as f:
+        for line in tqdm(f):
+            line = line.strip()
+            if not line:
+                continue
+            u, it, r, _ts = line.split(sep)
+            users.append(int(u) - 1)     # IDs 从 1 开始
+            items.append(int(it) - 1)
+            ratings.append(float(r))
+
+    users = np.array(users, dtype=np.int32)
+    items = np.array(items, dtype=np.int32)
+    ratings = np.array(ratings, dtype=np.float32)
+    n_users = int(users.max()) + 1
+    n_items = int(items.max()) + 1
+
+    rating_matrix = sparse.coo_matrix((ratings, (users, items)), shape=(n_users, n_items), dtype=np.float32).tocsr()
+    return rating_matrix
+
 
 if __name__ == "__main__":
-    rating_matrix = build_sparse_matrix()
-    sparse.save_npz("netflix_matrix.npz", rating_matrix)
+    rating_matrix_movielens = build_sparse_matrix_movielens()
+    sparse.save_npz("movielens_matrix.npz", rating_matrix_movielens)
+    # rating_matrix_netflix = build_sparse_matrix_netflix()
+    # sparse.save_npz("netflix_matrix.npz", rating_matrix)
