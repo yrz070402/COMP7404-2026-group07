@@ -64,8 +64,8 @@ class L2LSH:
 def query_transform(U, m):
     # assume that query q is normalized before using Q(x)
     norm_U = np.linalg.norm(U, axis=1, keepdims=True)
-    U_normalized = U / (norm_U + 1e-9)
-
+    norm_U = np.where(norm_U == 0, 1.0, norm_U)
+    U_normalized = U / norm_U
     # calculate the padding of Q
     Q_padding = np.full((U.shape[0], m), 0.5)
     Q = np.hstack([U_normalized, Q_padding])
@@ -287,10 +287,10 @@ if __name__ == "__main__":
 
     # PureSVD procedure
     print('PureSVD')
-    # U, V = pure_svd(matrix_path, f)
+    U, V = pure_svd(matrix_path, f)
 
-    data = np.load("svd_cache_f300.npz")
-    U, V = data['U_vecs'], data['V_vecs']
+    # data = np.load("svd_cache_f300.npz")
+    # U, V = data['U_vecs'], data['V_vecs']
 
     # ALSH
     print('ALSH')
@@ -315,7 +315,8 @@ if __name__ == "__main__":
 
     fig = pic_plot.plot_pr_curve(pr_alsh, pr_baseline, K_list, T_list, data_name)
     plt.savefig(f"fig_ALSH_{data_name}.png", dpi=300)
-    plt.show()
+    plt.close()
+    # plt.show()
 
     # PartII
     avg_r_result = get_avg_pr4r(
@@ -334,4 +335,5 @@ if __name__ == "__main__":
     fig = pic_plot.plot_avg_pr4r(avg_r_result, r_list, T_list, data_name)
     plt.tight_layout()
     plt.savefig(f"fig_r_compare_{data_name}.png", dpi=300)
-    plt.show()
+    plt.close()
+    # plt.show()
