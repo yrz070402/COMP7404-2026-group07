@@ -1,4 +1,6 @@
 # *Asymmetric LSH (ALSH) for Sublinear Time Maximum Inner Product Search (MIPS)*    (Reproducing  paper from 2012 NIPS)
+## Authors
+Anshumali Shrivastava, Ping Li
 ## Abstract
 Asymmetric LSH is the first provably sublinear time algorithm for approximate Maximum Inner Product Search. By applying asymmetric transformations to the query vector q and item vector p, the MIPS problem can be transformed into a nearest neighbor search problem under Euclidean distance(L2 distance).
 ![image](image/main_model_pic_with_white_back.png)
@@ -38,3 +40,9 @@ Example command
 ```
 python main.py --db Movielens --input movielens_matrix.npz --f_param 150 --U_param 0.83 --padding 3 --num_users 2000 --num_r_runs 5
 ```
+### Result
+We fully reproduced the experiment results of the chosen paper. The results are shown below.
+![image](image/fig_ALSH_Netflix.png)
+![image](image/fig_ALSH_Movielens.png)
+![image](image/fig_r_compare_Netflix.png)
+![image](image/fig_r_compare_Netflix.png)
